@@ -3,6 +3,7 @@ package com.geeta.serverclient.service;
 
 import com.geeta.serverclient.entity.Question;
 import com.geeta.serverclient.repository.QuestionRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.Random;
 
 @Service
+@Slf4j
 public class QuestionService {
 
     @Autowired
@@ -21,6 +23,7 @@ public class QuestionService {
 
 
     public Question randomQuestion(String clientRequest) {
+        log.info("Inside random Question method of QuestionService Class");
             Random rand = new Random();
             int number1, number2, number3;
             String ans;
@@ -40,8 +43,10 @@ public class QuestionService {
     }
 
     public ResponseEntity checkAnswer(String name, String answer) {
+        log.info("Inside checkAnswer method of QuestionService Class");
         Optional<Question> q = questionRepository.findById(name);
         if(!q.isPresent() || !(q.get().getAnswer().equals(answer))){
+            log.warn("The question or answer you provides in the body is wrong");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         else{
