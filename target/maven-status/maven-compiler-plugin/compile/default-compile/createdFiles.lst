@@ -1,0 +1,5 @@
+com\geeta\serverclient\controller\QuestionController.class
+com\geeta\serverclient\repository\QuestionRepository.class
+com\geeta\serverclient\ServerclientApplication.class
+com\geeta\serverclient\entity\Question.class
+com\geeta\serverclient\service\QuestionService.class
